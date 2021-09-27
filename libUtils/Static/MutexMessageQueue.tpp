@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Utils
+namespace Utils::Static
 {
 	template<typename T, uint32_t SIZE>
 	MutexMessageQueue<T, SIZE>::MutexMessageQueue()

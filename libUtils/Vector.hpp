@@ -36,7 +36,7 @@ namespace Utils
         inline auto begin() const { return _data; }
         inline auto end() const { return &_data[_count]; }
 
-    private:
+    protected:
         byte _data[SIZE];
         size_t _count;
     };

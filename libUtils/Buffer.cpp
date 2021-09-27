@@ -24,7 +24,7 @@ bool Buffer::Add(const ByteSpan &buffer)
 	if ((_count + buffer.size) > _size)
 		return false;
 
-	for (uint32_t i = 0; i < buffer.size; i++)
+	for (size_t i = 0; i < buffer.size; i++)
 		_data[_count++] = buffer.data[i];
 
 	return true;
@@ -42,6 +42,13 @@ bool Buffer::Add(byte object)
 bool Buffer::Add(const byte *pointer, size_t size) 
 { 
 	return Add(ByteSpan{ pointer, size }); 
+}
+
+void Buffer::DeepClear()
+{
+	for(size_t i = 0; i < _count; i++)
+		_data[i] = 0;
+	_count = 0;
 }
 
 bool Buffer::Shrink(size_t shrinkSize)

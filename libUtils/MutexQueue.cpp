@@ -26,7 +26,7 @@ bool MutexQueue::Enqueue(const byte &element)
 	return result;
 }
 
-uint32_t MutexQueue::DequeueAllTo(byte *destination)
+size_t MutexQueue::DequeueAllTo(byte *destination)
 {
 	_mutex.Lock();
 	uint32_t result = Queue::DequeueAllTo(destination);
@@ -35,7 +35,7 @@ uint32_t MutexQueue::DequeueAllTo(byte *destination)
 	return result;
 }
 
-uint32_t MutexQueue::DequeueAllTo(Buffer &destination)
+size_t MutexQueue::DequeueAllTo(Buffer &destination)
 {
 	_mutex.Lock();
 	uint32_t result = Queue::DequeueAllTo(destination);
@@ -44,7 +44,7 @@ uint32_t MutexQueue::DequeueAllTo(Buffer &destination)
 	return result;
 }
 
-bool MutexQueue::DequeueTo(byte *destination, uint32_t count)
+bool MutexQueue::DequeueTo(byte *destination, size_t count)
 {
 	_mutex.Lock();
 	bool result = Queue::DequeueTo(destination, count);

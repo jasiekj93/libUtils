@@ -1,10 +1,10 @@
 #pragma once
 
-#include <libUtils/Queue.hpp>
+#include <libUtils/Static/Queue.hpp>
 
-namespace Hsm::Core
+namespace Utils::Static
 {
-	template<typename T, uint32_t SIZE>
+	template<typename T, size_t SIZE>
 		class MessageQueue
 		{		
 		private:
@@ -29,4 +29,4 @@ namespace Hsm::Core
 		};
 }
 
-#include <libUtils/MessageQueue.tpp>
+#include <libUtils/Static/MessageQueue.tpp>

@@ -9,18 +9,18 @@ Queue::Queue(size_t size)
 }
 
 
-uint32_t Queue::DequeueAllTo(byte *destination)
+size_t Queue::DequeueAllTo(byte *destination)
 {
-	uint32_t result = _buffer.Count();
+	size_t result = _buffer.Count();
 	if (this->DequeueTo(destination, _buffer.Count()))
 		return result;
 	else
 		return UINT32_MAX;
 }
 
-uint32_t Queue::DequeueAllTo(Buffer &destination)
+size_t Queue::DequeueAllTo(Buffer &destination)
 {
-	uint32_t size = _buffer.Count();
+	size_t size = _buffer.Count();
 	bool result = destination.Add({_buffer.Data(), size});
 	_buffer.Clear();
 	if (result == true)
@@ -29,14 +29,14 @@ uint32_t Queue::DequeueAllTo(Buffer &destination)
 		return UINT32_MAX;
 }
 
-uint32_t Queue::DequeueAll()
+size_t Queue::DequeueAll()
 {
-	uint32_t result = _buffer.Count();
+	size_t result = _buffer.Count();
 	this->Dequeue(_buffer.Count());
 	return result;
 }
 
-bool Queue::DequeueTo(byte *destination, uint32_t count)
+bool Queue::DequeueTo(byte *destination, size_t count)
 {
 	if (count > _buffer.Count())
 		return false;
@@ -64,7 +64,7 @@ byte Queue::PopFront()
 	return result;
 }
 
-uint16_t Queue::GetUint16(uint32_t index) const
+uint16_t Queue::GetUint16(size_t index) const
 {
 	if ((index + 1) >= _buffer.Count())
 		return UINT16_MAX;
@@ -73,13 +73,10 @@ uint16_t Queue::GetUint16(uint32_t index) const
 		   (uint16_t)_buffer[index + 1];
 }
 
-uint32_t Queue::GetUint32(uint32_t index) const
+word Queue::GetUint32(size_t index) const
 {
 	if ((index + 3) >= _buffer.Count())
-		return UINT32_MAX;
+		return WORD_MAX;
 	else
-		return ((uint32_t)_buffer[index] << 24) |
-			   ((uint32_t)_buffer[index + 1] << 16) |
-			   ((uint32_t)_buffer[index + 2] << 8) |
-			   (uint32_t)_buffer[index + 3];
+		return BytesToWord(&_buffer[index]);
 }

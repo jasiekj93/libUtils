@@ -1,9 +1,9 @@
 #pragma once
 
-#include <libUtils/MessageQueue.hpp>
+#include <libUtils/Static/MessageQueue.hpp>
 #include <libUtils/Mutex.hpp>
 
-namespace Utils
+namespace Utils::Static
 {
 	template<typename T, uint32_t SIZE>
 		class MutexMessageQueue : public MessageQueue<T, SIZE>
@@ -27,4 +27,4 @@ namespace Utils
 		};
 }
 
-#include <libUtils/MutexMessageQueue.tpp>
+#include <libUtils/Static/MutexMessageQueue.tpp>

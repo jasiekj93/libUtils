@@ -20,9 +20,9 @@ namespace Utils
 
 		bool Enqueue(const byte &element) override;
 		bool Enqueue(const ByteSpan &buffer) override;
-		bool DequeueTo(byte *, uint32_t count) override;
-		uint32_t DequeueAllTo(byte *) override;
-		uint32_t DequeueAllTo(Buffer &destination) override;
+		bool DequeueTo(byte *, size_t count) override;
+		size_t DequeueAllTo(byte *) override;
+		size_t DequeueAllTo(Buffer &destination) override;
 		
 		bool TryEnqueue(const byte &element);
 		bool TryEnqueue(const ByteSpan &buffer);
@@ -30,8 +30,8 @@ namespace Utils
 		bool TryDequeueAllTo(byte *);
 
 	protected:
-		byte operator[](uint32_t index) { return 0; }
-		byte *GetData(uint32_t index) { return nullptr; }
+		byte operator[](size_t index) { return 0; }
+		byte *GetData(size_t index) { return nullptr; }
 
 	private:
 		Mutex _mutex;

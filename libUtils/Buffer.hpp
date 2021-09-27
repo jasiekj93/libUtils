@@ -29,6 +29,7 @@ namespace Utils
 		bool Insert(size_t index, const byte *, size_t);
 
 		inline void Clear() { _count = 0; }
+		void DeepClear();
 		bool Shrink(size_t size);
 		bool ShiftLeft(size_t startPosition, size_t count);
 
