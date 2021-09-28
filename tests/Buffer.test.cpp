@@ -14,13 +14,15 @@ using namespace Utils;
 
 static constexpr size_t SIZE = 5;
 
+using TestBuffer = Buffer<byte>;
+
 TEST_GROUP(BufferTest)
 {
 };
 
 TEST(BufferTest, Empty)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
 
     CHECK_EQUAL(0, buffer.Count());
     CHECK_EQUAL(SIZE, buffer.Capacity());
@@ -31,7 +33,7 @@ TEST(BufferTest, Empty)
 
 TEST(BufferTest, Add_OneItem)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte item = 5;
 
     CHECK(buffer.Add(item));
@@ -46,7 +48,7 @@ TEST(BufferTest, Add_OneItem)
 
 TEST(BufferTest, Add_Span)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 10, 15, 20 };
 
     CHECK(buffer.Add({ items, sizeof(items) }));
@@ -59,7 +61,7 @@ TEST(BufferTest, Add_Span)
 
 TEST(BufferTest, Add_Pointer)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 10, 15, 20 };
 
     CHECK(buffer.Add(items, sizeof(items)));
@@ -72,7 +74,7 @@ TEST(BufferTest, Add_Pointer)
 
 TEST(BufferTest, Add_MoreThanCount)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 10, 15, 20, 25, 30 };
 
     CHECK_FALSE(buffer.Add(items, sizeof(items)));
@@ -86,7 +88,7 @@ TEST(BufferTest, Add_MoreThanCount)
 
 TEST(BufferTest, Insert_OneItem)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 15 };
     byte inserted = 10;
 
@@ -101,7 +103,7 @@ TEST(BufferTest, Insert_OneItem)
 
 TEST(BufferTest, Insert_OneItem_IndexOutOfBounds)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 15 };
     byte inserted = 10;
 
@@ -113,7 +115,7 @@ TEST(BufferTest, Insert_OneItem_IndexOutOfBounds)
 
 TEST(BufferTest, Insert_Span)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 15 };
     byte inserted[] = { 1, 2, 3 };
 
@@ -130,7 +132,7 @@ TEST(BufferTest, Insert_Span)
 
 TEST(BufferTest, Insert_Span_MoreThanCount)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 15 };
     byte inserted[] = { 1, 2, 3, 4 };
 
@@ -142,7 +144,7 @@ TEST(BufferTest, Insert_Span_MoreThanCount)
 
 TEST(BufferTest, Shrink)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 15 };
 
     buffer.Add(items, 2);
@@ -153,7 +155,7 @@ TEST(BufferTest, Shrink)
 
 TEST(BufferTest, ShiftLeft)
 {
-    Buffer buffer(SIZE);
+    TestBuffer buffer(SIZE);
     byte items[] = { 5, 10, 15, 20, 25 };
 
     buffer.Add(items, 5);

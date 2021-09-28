@@ -8,33 +8,33 @@
  * @details
 **/
 
-#include <cstdint>
+#include <cstddef>
 
 namespace Utils
 {
-	template <class Type>
+	template <class T>
 		class List
 		{
 		public:
 			List();
 			~List();
 
-			uint32_t Size() const;
+			size_t Size() const;
 			bool IsEmpty() const;
-			const Type* Front() const;
-			const Type* Back() const;
-			void PushFront(const Type & object);
-			void PushBack(const Type & object);
+			const T* Front() const;
+			const T* Back() const;
+			void PushFront(const T &);
+			void PushBack(const T &);
 			bool PopFront();
 			bool PopBack();
 			void Clear();
 
-			Type * operator[](uint32_t index);
+			T * operator[](size_t);
 
 		private:
 			struct Node
 			{
-				Type* object;
+				T* object;
 				Node *next;
 			};
 

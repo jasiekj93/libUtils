@@ -77,7 +77,7 @@ namespace Utils::Static
 	}
 
 	template<typename T, uint32_t SIZE>
-	uint32_t MutexMessageQueue<T, SIZE>::DequeueAllTo(T *out)
+	size_t MutexMessageQueue<T, SIZE>::DequeueAllTo(T *out)
 	{
 		_mutex.Lock();
 		auto result = MessageQueue<T, SIZE>::DequeueAllTo(out);
@@ -87,7 +87,7 @@ namespace Utils::Static
 	}
 
 	template<typename T, uint32_t SIZE>
-	uint32_t MutexMessageQueue<T, SIZE>::TryDequeueAllTo(T *out)
+	size_t MutexMessageQueue<T, SIZE>::TryDequeueAllTo(T *out)
 	{
 		if (_mutex.TryLock() == false)
 			return false;
@@ -99,7 +99,7 @@ namespace Utils::Static
 	}
 
 	template<typename T, uint32_t SIZE>
-	uint32_t MutexMessageQueue<T, SIZE>::DequeueAll()
+	size_t MutexMessageQueue<T, SIZE>::DequeueAll()
 	{
 		_mutex.Lock();
 		auto result = MessageQueue<T, SIZE>::DequeueAll();
@@ -109,7 +109,7 @@ namespace Utils::Static
 	}
 
 	template<typename T, uint32_t SIZE>
-	uint32_t MutexMessageQueue<T, SIZE>::TryDequeueAll()
+	size_t MutexMessageQueue<T, SIZE>::TryDequeueAll()
 	{
 		if (_mutex.TryLock() == false)
 			return false;

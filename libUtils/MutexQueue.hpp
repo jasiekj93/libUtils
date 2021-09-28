@@ -13,27 +13,30 @@
 
 namespace Utils
 {
-	class MutexQueue : public Queue
+	template<typename T>
+	class MutexQueue : public Queue<T>
 	{
 	public:
 		MutexQueue(size_t);
 
-		bool Enqueue(const byte &element) override;
-		bool Enqueue(const ByteSpan &buffer) override;
-		bool DequeueTo(byte *, size_t count) override;
-		size_t DequeueAllTo(byte *) override;
-		size_t DequeueAllTo(Buffer &destination) override;
+		bool Enqueue(const T &element) override;
+		bool Enqueue(const Span<T> &buffer) override;
+		bool DequeueTo(T *, size_t count) override;
+		size_t DequeueAllTo(T *) override;
+		size_t DequeueAllTo(Buffer<T> &destination) override;
 		
-		bool TryEnqueue(const byte &element);
-		bool TryEnqueue(const ByteSpan &buffer);
-		bool TryDequeueTo(byte *, uint32_t count);
-		bool TryDequeueAllTo(byte *);
+		bool TryEnqueue(const T &element);
+		bool TryEnqueue(const Span<T> &buffer);
+		bool TryDequeueTo(T *, size_t count);
+		bool TryDequeueAllTo(T *);
 
 	protected:
-		byte operator[](size_t index) { return 0; }
-		byte *GetData(size_t index) { return nullptr; }
+		T operator[](size_t index) { return 0; }
+		T * GetData(size_t index) { return nullptr; }
 
 	private:
 		Mutex _mutex;
 	};
 }
+
+#include <libUtils/MutexQueue.tpp>

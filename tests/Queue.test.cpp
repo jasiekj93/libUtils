@@ -20,6 +20,6 @@ TEST_GROUP(QueueTest)
 
 TEST(QueueTest, Empty)
 {
-    Queue queue(SIZE);
+    //Queue queue(SIZE);
     
 }

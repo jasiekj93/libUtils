@@ -14,16 +14,16 @@ namespace Utils::Static
 		public:
 			MutexMessageQueue();
 		
-			bool Enqueue(const T &element);
+			bool Enqueue(const T &element) override;
 			bool TryEnqueue(const T &element);
-			bool Enqueue(const Span<T> & buffer);
+			bool Enqueue(const Span<T> & buffer) override;
 			bool TryEnqueue(const Span<T> & buffer);
-			bool DequeueTo(T *);
+			bool DequeueTo(T *) override;
 			bool TryDequeueTo(T *);
-			uint32_t DequeueAllTo(T *);
-			uint32_t TryDequeueAllTo(T *);
-			uint32_t DequeueAll();
-			uint32_t TryDequeueAll();
+			size_t DequeueAllTo(T *) override;
+			size_t TryDequeueAllTo(T *);
+			size_t DequeueAll() override;
+			size_t TryDequeueAll();
 		};
 }
 

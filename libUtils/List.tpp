@@ -24,7 +24,7 @@ namespace Utils
 		}
 
 	template<class Type>
-		uint32_t List<Type>::Size() const
+		size_t List<Type>::Size() const
 		{
 			if (_head == nullptr)
 				return 0;
@@ -168,11 +168,11 @@ namespace Utils
 		}
 
 	template<class Type>
-		Type * List<Type>::operator[](uint32_t index)
+		Type * List<Type>::operator[](size_t index)
 		{
 			Node *tmp = _head;
 
-			uint32_t i = 0;
+			size_t i = 0;
 			while (tmp != nullptr && i < index)
 			{
 				i++;
