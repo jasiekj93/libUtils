@@ -10,21 +10,21 @@
 
 namespace Utils
 {
-	template<class Type>
-		List<Type>::List()
+	template<class T>
+		List<T>::List()
 		{
 			_head = nullptr;
 			_tail = nullptr;
 		}
 
-	template<class Type>
-		List<Type>::~List()
+	template<class T>
+		List<T>::~List()
 		{
 			Clear();
 		}
 
-	template<class Type>
-		size_t List<Type>::Size() const
+	template<class T>
+		size_t List<T>::Size() const
 		{
 			if (_head == nullptr)
 				return 0;
@@ -41,8 +41,8 @@ namespace Utils
 			return i;
 		}
 
-	template<class Type>
-		bool List<Type>::IsEmpty() const
+	template<class T>
+		bool List<T>::IsEmpty() const
 		{
 			if (_head == nullptr)
 				return true;
@@ -50,8 +50,8 @@ namespace Utils
 				return false;
 		}
 
-	template<class Type>
-		const Type* List<Type>::Front() const
+	template<class T>
+		const T* List<T>::Front() const
 		{
 			if (_head != nullptr)
 				return _head->object;
@@ -59,8 +59,8 @@ namespace Utils
 				return nullptr;
 		}
 
-	template<class Type>
-		const Type* List<Type>::Back() const
+	template<class T>
+		const T* List<T>::Back() const
 		{
 			if (_tail != nullptr)
 				return _tail->object;
@@ -68,11 +68,11 @@ namespace Utils
 				return nullptr;
 		}
 
-	template<class Type>
-		void List<Type>::PushFront(const Type & object)
+	template<class T>
+		void List<T>::PushFront(const T & object)
 		{
 			Node *newNode = new Node;
-			newNode->object = new Type(object);
+			newNode->object = new T(object);
 	
 			if (_head == nullptr)
 			{
@@ -87,11 +87,11 @@ namespace Utils
 			}
 		}
 
-	template<class Type>
-		void List<Type>::PushBack(const Type & object)
+	template<class T>
+		void List<T>::PushBack(const T & object)
 		{
 			Node *newNode = new Node;
-			newNode->object = new Type(object);
+			newNode->object = new T(object);
 			newNode->next = nullptr;
 	
 			if (_tail == nullptr)
@@ -106,8 +106,8 @@ namespace Utils
 			}
 		}
 
-	template<class Type>
-		bool List<Type>::PopFront()
+	template<class T>
+		bool List<T>::PopFront()
 		{
 			if (_head == nullptr)
 				return false;
@@ -130,8 +130,8 @@ namespace Utils
 			return true;
 		}
 
-	template<class Type>
-		bool List<Type>::PopBack()
+	template<class T>
+		bool List<T>::PopBack()
 		{
 			if (_tail == nullptr)
 				return false;
@@ -160,15 +160,63 @@ namespace Utils
 			return true;
 		}
 
-	template<class Type>
-		void List<Type>::Clear()
+	template<class T>
+		void List<T>::Clear()
 		{
 			while (PopFront() == true)
 				;
 		}
 
-	template<class Type>
-		Type * List<Type>::operator[](size_t index)
+    template<class T>
+		int List<T>::At(const T &object)
+		{
+			Node *tmp = _head;
+            int i = 0;
+
+			while (tmp != nullptr)
+			{
+                if(*(tmp->object) == object)
+                    return i;
+
+                i++;
+				tmp = tmp->next;
+			}
+			
+            return -1;
+		}
+
+    template<class T>
+        bool List<T>::Remove(size_t index)
+        {
+            auto size = Size();
+
+            if(index >= size)
+                return false;
+
+            if(index == 0)
+                return PopFront();
+            else if(index == (size - 1))
+                return PopBack();
+            else
+            {
+                Node *tmp = _head;
+
+                for(size_t i = 0; i < (index - 1); i++)
+                    tmp = tmp->next;
+
+                auto prev = tmp;
+                tmp = tmp->next;
+
+                prev->next = tmp->next;
+                delete tmp->object;
+                delete tmp;
+
+                return true;
+            }
+        }
+
+	template<class T>
+		T * List<T>::operator[](size_t index)
 		{
 			Node *tmp = _head;
 

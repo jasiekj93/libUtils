@@ -28,6 +28,8 @@ namespace Utils
 			bool PopFront();
 			bool PopBack();
 			void Clear();
+            int At(const T &);
+            bool Remove(size_t);
 
 			T * operator[](size_t);
 

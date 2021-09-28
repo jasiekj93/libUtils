@@ -139,3 +139,62 @@ TEST(ListTest, PopFront_AndPush)
     CHECK_EQUAL(1, list.Size());
     CHECK_EQUAL((value + 1), *list[0]);
 }
+
+TEST(ListTest, At)
+{
+    List<char> list;
+
+    list.PushBack('a');
+    list.PushBack('b');
+    list.PushBack('c');
+
+    CHECK_EQUAL(0, list.At('a'));
+    CHECK_EQUAL(1, list.At('b'));
+    CHECK_EQUAL(2, list.At('c'));
+    CHECK_EQUAL(-1, list.At('d'));
+}
+
+TEST(ListTest, Remove)
+{
+    List<char> list;
+
+    list.PushBack('a');
+    list.PushBack('b');
+    list.PushBack('c');
+
+    CHECK(list.Remove(1));
+
+    CHECK_EQUAL(0, list.At('a'));
+    CHECK_EQUAL(-1, list.At('b'));
+    CHECK_EQUAL(1, list.At('c'));
+}
+
+TEST(ListTest, Remove_Head)
+{
+    List<char> list;
+
+    list.PushBack('a');
+    list.PushBack('b');
+    list.PushBack('c');
+
+    CHECK(list.Remove(0));
+
+    CHECK_EQUAL(-1, list.At('a'));
+    CHECK_EQUAL(0, list.At('b'));
+    CHECK_EQUAL(1, list.At('c'));
+}
+
+TEST(ListTest, Remove_Tail)
+{
+    List<char> list;
+
+    list.PushBack('a');
+    list.PushBack('b');
+    list.PushBack('c');
+
+    CHECK(list.Remove(2));
+
+    CHECK_EQUAL(0, list.At('a'));
+    CHECK_EQUAL(1, list.At('b'));
+    CHECK_EQUAL(-1, list.At('c'));
+}
