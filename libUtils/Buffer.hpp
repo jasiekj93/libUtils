@@ -35,7 +35,7 @@ namespace Utils
 		bool ShiftLeft(size_t startPosition, size_t count);
 
 		inline auto Data() const { return _data; }
-		inline T *Data(size_t i) const { return ((i < _count) ? &_data[i] : nullptr); }
+		inline T *Data(size_t i) const { return &_data[i]; }
 		inline auto Count() const { return _count; }
 		inline auto Capacity() const { return _size; }
 		inline bool IsFull() const { return (_count == _size); }

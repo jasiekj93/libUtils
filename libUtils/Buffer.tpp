@@ -52,7 +52,7 @@ namespace Utils
 	template<typename T>
 	void Buffer<T>::DeepClear()
 	{
-		for(size_t i = 0; i < _count; i++)
+		for(size_t i = 0; i < _size; i++)
 			_data[i] = T();
 		_count = 0;
 	}

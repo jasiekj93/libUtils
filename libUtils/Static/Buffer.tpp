@@ -43,7 +43,7 @@ namespace Utils::Static
     template<typename T, size_t SIZE>
     void Buffer<T, SIZE>::DeepClear()
     {
-        for(size_t i = 0; i < _count; i++)
+        for(size_t i = 0; i < SIZE; i++)
             _data[i] = T();
         _count = 0;
     }
