@@ -10,6 +10,8 @@
 
 #include <CppUTest/CommandLineTestRunner.h>
 
+using namespace Utils;
+
 TEST_GROUP(DataUnitTest)
 {
     
