@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-namespace Utils
+namespace Utils::Static
 {
     template<size_t SIZE>
     Vector<SIZE>::Vector()

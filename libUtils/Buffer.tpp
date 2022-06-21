@@ -6,16 +6,10 @@ namespace Utils
 	template<typename T>
 	Buffer<T>::Buffer(size_t size)
 		: _size(size)
-		, _data(new T[size])
+		, _data(std::make_unique<T[]>(size))
 		, _count(0)
 
 	{
-	}
-
-	template<typename T>
-	Buffer<T>::~Buffer()
-	{
-		delete[] _data;
 	}
 
 	template<typename T>

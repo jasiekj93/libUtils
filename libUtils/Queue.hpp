@@ -46,7 +46,6 @@ namespace Utils
 		virtual inline const T * Data() const { return _buffer.Data(); }
 
 	protected:
-		const size_t _size;
 		Buffer<T> _buffer;
 	};
 }

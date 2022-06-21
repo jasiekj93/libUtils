@@ -11,13 +11,13 @@
 #include <cstdint>
 #include <cstddef>
 
-namespace Utils
+namespace Utils::Static
 {
 	template <class Type, size_t SIZE> 
-	class StaticList
+	class List
 	{		
 	public:
-		StaticList();
+		List();
 
 		const Type* Front() const;
 		const Type* Back() const;
@@ -56,4 +56,4 @@ namespace Utils
 	};
 }
 
-#include <libUtils/StaticList.tpp>
+#include <libUtils/Static/List.tpp>

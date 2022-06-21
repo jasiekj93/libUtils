@@ -6,11 +6,12 @@
  * @details
  */
 
-#include <libUtils/Vector.hpp>
+#include <libUtils/Static/Vector.hpp>
 
 #include <CppUTest/CommandLineTestRunner.h>
 
 using namespace Utils;
+using namespace Utils::Static;
 
 static constexpr size_t SIZE = 5;
 

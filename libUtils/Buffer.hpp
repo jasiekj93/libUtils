@@ -10,6 +10,7 @@
 
 #include <cstring>
 #include <array>
+#include <memory>
 #include <libUtils/Span.hpp>
 
 namespace Utils
@@ -19,7 +20,6 @@ namespace Utils
 	{
 	public:
 		explicit Buffer(size_t);
-		~Buffer();
 
 		bool Add(const Span<T> &);
 		bool Add(const T &);
@@ -51,7 +51,7 @@ namespace Utils
 
 	private:
 		const size_t _size;
-		T *_data;
+        std::unique_ptr<T[]> _data;
 		size_t _count;
 	};
 }

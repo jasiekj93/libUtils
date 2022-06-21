@@ -14,6 +14,12 @@ using namespace Utils;
 
 TEST_GROUP(DataUnitTest)
 {
+    struct TestStruct
+    {
+        int i; 
+        char c;
+        double d;
+    };
     
 };
 
@@ -54,4 +60,17 @@ TEST(DataUnitTest, Dword)
 
     CHECK(number == result);
     MEMCMP_EQUAL(expected, buffer, sizeof(expected));
+}
+
+TEST(DataUnitTest, Struct)
+{
+    byte buffer[sizeof(TestStruct)];
+    TestStruct object = { 5, 'a', 6.5 };
+
+    ToBytes<TestStruct>(buffer, object);
+    auto result = FromBytes<TestStruct>(buffer);
+
+    CHECK_EQUAL(object.c, result.c);
+    CHECK_EQUAL(object.i, result.i);
+    CHECK_EQUAL(object.d, result.d);
 }

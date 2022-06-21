@@ -11,7 +11,7 @@
 #include <libUtils/Span.hpp>
 #include <utility>
 
-namespace Utils
+namespace Utils::Static
 {
     template<size_t SIZE>
     class Vector
@@ -42,4 +42,4 @@ namespace Utils
     };
 }
 
-#include <libUtils/Vector.tpp>
+#include <libUtils/Static/Vector.tpp>

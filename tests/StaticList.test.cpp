@@ -6,14 +6,14 @@
  * @details
  */
 
-#include <libUtils/StaticList.hpp>
+#include <libUtils/Static/List.hpp>
 
 #include <CppUTest/CommandLineTestRunner.h>
 
 using namespace Utils;
 
 static constexpr size_t SIZE = 5;
-using TestList = StaticList<int, SIZE>;
+using TestList = Static::List<int, SIZE>;
 
 
 TEST_GROUP(StaticListTest)

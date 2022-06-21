@@ -1,17 +1,17 @@
 #pragma once
 
 /**
- * @file	StaticList.tpp
+ * @file	List.tpp
  * @author	Adrian Szczepanski
  * @date	24-03-2021
  * @brief
  * @details
 **/
 
-namespace Utils
+namespace Utils::Static
 {
 	template <class Type, size_t SIZE>
-	StaticList<Type, SIZE>::StaticList()
+	List<Type, SIZE>::List()
 	{
 		_head = nullptr;
 		_tail = nullptr;
@@ -19,7 +19,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	const Type* StaticList<Type, SIZE>::Front() const
+	const Type* List<Type, SIZE>::Front() const
 	{
 		if (_head != nullptr)
 			return &_head->object;
@@ -28,7 +28,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	const Type* StaticList<Type, SIZE>::Back() const
+	const Type* List<Type, SIZE>::Back() const
 	{
 		if (_tail != nullptr)
 			return &_tail->object;
@@ -37,7 +37,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	bool StaticList<Type, SIZE>::PushFront(const Type & object)
+	bool List<Type, SIZE>::PushFront(const Type & object)
 	{
 		Node *newNode = _GetFreeNode();
 
@@ -64,7 +64,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	bool StaticList<Type, SIZE>::PushBack(const Type & object)
+	bool List<Type, SIZE>::PushBack(const Type & object)
 	{
 		Node *newNode = _GetFreeNode();
 
@@ -90,7 +90,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	bool StaticList<Type, SIZE>::PopFront()
+	bool List<Type, SIZE>::PopFront()
 	{
 		if (_head == nullptr)
 			return false;
@@ -113,7 +113,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	bool StaticList<Type, SIZE>::PopBack()
+	bool List<Type, SIZE>::PopBack()
 	{
 		if (_tail == nullptr)
 			return false;
@@ -144,7 +144,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	void StaticList<Type, SIZE>::Clear()
+	void List<Type, SIZE>::Clear()
 	{
 		for (uint32_t i = 0; i < SIZE; i++)
 		{
@@ -156,7 +156,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	Type * StaticList<Type, SIZE>::operator[](uint32_t index)
+	Type * List<Type, SIZE>::operator[](uint32_t index)
 	{
 		if (index > _count)
 			return nullptr;
@@ -176,7 +176,7 @@ namespace Utils
 	}
 
 	template <class Type, size_t SIZE>
-	typename StaticList<Type, SIZE>::Node * StaticList<Type, SIZE>::_GetFreeNode()
+	typename List<Type, SIZE>::Node * List<Type, SIZE>::_GetFreeNode()
 	{
 		uint32_t i = 0;
 		while (i < SIZE && _nodes[i].isFree == false)

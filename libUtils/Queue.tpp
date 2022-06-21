@@ -4,8 +4,7 @@ namespace Utils
 {
 	template<typename T>
 	Queue<T>::Queue(size_t size)
-			: _size(size)
-		, _buffer(size)
+		: _buffer(size)
 	{
 	}
 
